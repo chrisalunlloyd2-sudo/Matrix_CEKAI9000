@@ -20,14 +20,14 @@ def generate_algebraic_signature(code):
     # 1. Remove comments
     code = re.sub(r'#.*', '', code)
     code = re.sub(r'/\*.*?\*/', '', code, flags=re.DOTALL)
-    
+
     # 2. Normalize whitespace
     code = re.sub(r'\s+', ' ', code).strip()
-    
+
     # 3. Simple tokenization (placeholder for deeper AST analysis)
     # Replace common variable-like patterns with 'VAR'
     # code = re.sub(r'\b[a-zA-Z_][a-zA-Z0-9_]*\b', 'VAR', code)
-    
+
     return hashlib.sha256(code.encode()).hexdigest()
 
 def refract(proposed_code):
@@ -45,25 +45,25 @@ def refract(proposed_code):
         return False, None, 0.0
 
     search_query = " OR ".join(keywords)
-    
+
     try:
         conn = sqlite3.connect(VAULT_DB)
         cursor = conn.cursor()
-        
+
         # Search using FTS
         cursor.execute("SELECT code, context, source FROM code_vault WHERE code_vault MATCH ? LIMIT 1", (search_query,))
         result = cursor.fetchone()
         conn.close()
-        
+
         if result:
             existing_code = result[0]
             # Simple structural comparison (ratio of common non-whitespace chars)
             # This is a 'Refraction' logic placeholder
-            return True, existing_code, 0.85 
-            
+            return True, existing_code, 0.85
+
     except Exception as e:
         print(f"[-] Refraction Error: {e}")
-        
+
     return False, None, 0.0
 
 if __name__ == "__main__":
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     else:
         # Read code from stdin
         content = sys.stdin.read()
-    
+
     if content:
         match, code, conf = refract(content)
         if match and conf > 0.8:
