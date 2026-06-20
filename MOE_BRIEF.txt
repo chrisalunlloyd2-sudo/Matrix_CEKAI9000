@@ -1,0 +1,112 @@
+======================================================================
+  MOE -> KAI HANDSHAKE & BRIEF  (plain text)
+  generated 2026-06-19 00:54
+======================================================================
+
+WHO: Moe = corrective-code + autonomous ops engine on the Viper host.
+YOU (Kai) = chat / verbal planning / note-taking / thought management.
+Drive Moe by sending signed KQML; Moe executes and replies.
+
+-- AUTH --------------------------------------------------------------
+shared-secret fingerprint = sha256(SHARED_SECRET)[:16] = 570a461a1a7e3fc4
+Confirm your VIPER_KQML_SECRET hashes to the same fingerprint.
+KQML hash = sha256( canonical(acl) + '::' + SHARED_SECRET )  (hex)
+canonical() = collapse all whitespace to single spaces, strip ends.
+
+-- CHANNEL (file drop) ----------------------------------------------
+  inbox  (you -> Moe): C:\Viper\kqml_channel\inbox\*.json
+  outbox (Moe -> you): C:\Viper\kqml_channel\outbox\*.json
+  to_kai (Moe -> you): C:\Viper\kqml_channel\to_kai\*.json
+Each inbox file is JSON: {"acl": <string>, "kqml_hash": <hex>}
+Moe polls inbox every 5s, verifies, executes, writes a signed reply.
+
+-- ACL FORMAT (emit exactly this shape) ------------------------------
+(achieve
+  :sender kai
+  :receiver moe
+  :content "status all"
+  :reply-with kai-0001
+  :language KQML
+  :ontology viper)
+kqml_hash = 44e306a12c5506c05ac7f2c91b5156627b53999b5e1476f5ab52ee1ce922d273
+performatives: achieve | ask | tell | request | inform | train
+  'train'  -> Moe runs a hero-kernel LoRA epoch
+  content  -> a Moe command, e.g. 'status all', 'organize notes',
+              'code review ArchivalMoe', 'guardrails status'
+
+-- PROJECT STATE (KV payload, full json at master_state.json) ---------
+active projects: 46 | total files: 9797 | py modules: 1149
+
+  - AegisAgent                   Unknown    branch=main       files=7     py=0    dirty=0
+  - Aegis_Agents                 Python     branch=main       files=53    py=25   dirty=1
+  - ArchivalMoe                  Python     branch=main       files=36    py=31   dirty=10
+      Moe: GitHub management + agent network image/file archival. WIM/7zip.
+  - DARWIN_GRID_DEPLOY           JavaScript branch=master     files=9     py=0    dirty=1
+  - E2E_Final_Test               Python     branch=main       files=11    py=1    dirty=0
+  - E2E_Test_Deploy_6172         Python     branch=main       files=9     py=1    dirty=0
+  - Flappy_bird_except_python_and Python     branch=main       files=11    py=5    dirty=0
+  - GeneticFoundry               Python     branch=main       files=7     py=4    dirty=0
+      Darwin genetic algorithm code evolution. 100-round advancement. Integrates code.db.
+  - Gitautoworks                 Python     branch=main       files=10    py=4    dirty=1
+      My automated git hub uploader.
+  - H2OIDE                       Python     branch=main       files=60    py=25   dirty=0
+  - H2OMatrixCE                  Python     branch=main       files=133   py=59   dirty=0
+  - H2O_MATRIX                   Python     branch=main       files=72    py=37   dirty=0
+      Unified H2O IDE and Matrix GEN8 Ecosystem
+  - JRM                          Java       branch=main       files=94    py=0    dirty=0
+  - MATRIX_GEN8_HOME             Python     branch=main       files=0     py=0    dirty=813
+      ?? KAI 9000: Matrix CE Home | Unified Storage Substrate | Phase-Locked Android Architectur
+  - MatrixCE_GUI                 Python     branch=master     files=573   py=229  dirty=4
+  - Matrix_CEAGENTS              HTML       branch=master     files=40    py=27   dirty=0
+  - Matrix_CEAPK                 Smali      branch=master     files=23    py=0    dirty=0
+  - Matrix_CEAPPS                Python     branch=master     files=24    py=4    dirty=0
+  - Matrix_CEBack                Python     branch=master     files=6     py=3    dirty=0
+  - Matrix_CEKAI9000             Python     branch=master     files=7     py=4    dirty=1
+  - Matrix_CESERVERS             Python     branch=master     files=12    py=6    dirty=0
+  - MoeGUI                       Java       branch=main       files=10    py=0    dirty=9
+      JavaFX 21 chat GUI for Moe MoA intelligence center — dark theme, Python bridge, live DB st
+  - MultiPage_E2E_20010          Python     branch=main       files=8     py=1    dirty=1
+  - NAS_SHARE                    JavaScript branch=master     files=8     py=0    dirty=0
+  - NOVA_JOB_NETWORK_SOPS        PowerShell branch=master     files=9     py=0    dirty=0
+      Unified Resource Network Protocol & Onboarding SOPs
+  - NOVA_JOB_PHONE_COORDINATOR_APK Python     branch=master     files=6     py=2    dirty=0
+      Conversational Phone Coordinator APK (PHONE_CLI_MASTER)
+  - Nova                         HTML       branch=main       files=40    py=15   dirty=1
+      Autonomous Systems Engineering Project Foundry. v10.1 Master Engine with System Bible and 
+  - RandomTestProject            Unknown    branch=master     files=4     py=0    dirty=0
+  - SimAgentCity                 Python     branch=main       files=1288  py=45   dirty=0
+  - SimsMerged                   Python     branch=master     files=5787  py=188  dirty=0
+  - Sprite                       Unknown    branch=main       files=7     py=1    dirty=0
+      ?? KAI 9000: Matrix CE Ecosystem | Unified Substrate Explorer with Cloud & Phone Integrati
+  - TestRepo999                  Unknown    branch=master     files=1     py=0    dirty=0
+  - TestRepoPush                 Unknown    branch=master     files=1     py=0    dirty=0
+  - VIPER_SCRIPT_LIBRARY         Python     branch=main       files=1086  py=319  dirty=22
+      Private Sanitized Automation & SOP Library
+  - ViperKernel                  Python     branch=main       files=7     py=3    dirty=0
+      Viper AI hydration and training kernel â€” scans, evolves, hydrates all databases
+  - ViperNote                    Python     branch=main       files=7     py=4    dirty=0
+      BM25 RAG note ingestion. Indexes OneDrive ViperAI_Notes into research.db.
+  - WORKER_PACKAGE               JavaScript branch=master     files=5     py=0    dirty=0
+  - evolved_system               Python     branch=main       files=14    py=5    dirty=1
+  - matrix_dash                  Python     branch=main       files=7     py=2    dirty=0
+  - openrouter                   CSS        branch=main       files=14    py=1    dirty=0
+  - openrouter_manager           Python     branch=main       files=159   py=74   dirty=2
+  - sims-javafx-neo              Java       branch=main       files=61    py=21   dirty=3
+  - teaching_sandbox             Unknown    branch=main       files=32    py=1    dirty=0
+  - training_sandbox             Unknown    branch=main       files=15    py=0    dirty=0
+  - viper-claude                 Unknown    branch=main       files=8     py=0    dirty=0
+      Claude configuration, memory, and project context â€” private
+  - viper-state                  Unknown    branch=main       files=16    py=2    dirty=0
+      Viper Project: automated state, schemas, task exports, config. DO NOT edit manually.
+
+-- TO REPLY ----------------------------------------------------------
+Write {acl, kqml_hash} to inbox/. Example to acknowledge:
+(tell
+  :sender kai
+  :receiver moe
+  :content "kai online, secret confirmed"
+  :reply-with kai-ack
+  :language KQML
+  :ontology viper)
+kqml_hash = 2e1522f2468163e0522fe302ad93483f7296cbd61bc2dacad299b2f1c30b7e76
+======================================================================
