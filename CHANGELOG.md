@@ -3,6 +3,7 @@
 All notable changes to this project.
 
 ## 2026-08
+- **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 15:46 ($hash)
 - **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 14:37 ($hash)
 - **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 13:49 ($hash)
 - **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 12:48 ($hash)
@@ -10,7 +11,6 @@ All notable changes to this project.
 - **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 10:01 ($hash)
 - **[Changed]** [Moe autonomous] Matrix_CEKAI9000 2026-08-12 08:30 ($hash)
 - **[Docs]** docs: document 4 public API in autonomous_loop.py (autonomous, logic-verified) ($hash)
-- **[Docs]** docs: auto-update [skip-docs] ($hash)
 - **[Docs]** docs: auto-update [skip-docs] ($hash)
 - **[Docs]** docs: auto-update [skip-docs] ($hash)
 - **[Docs]** docs: auto-update [skip-docs] ($hash)
