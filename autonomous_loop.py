@@ -11,6 +11,7 @@ SERVER_URL = "http://127.0.0.1:9000/api/brew"
 OPTIMIZER_PATH = os.path.join(PROJECT_ROOT, "scripts", "scientific_optimizer.py")
 
 def get_active_todo_file():
+    """Get active todo file (function)."""
     if not os.path.exists(TODO_DIR):
         return None
     files = [f for f in os.listdir(TODO_DIR) if f.endswith('.json')]
@@ -20,6 +21,10 @@ def get_active_todo_file():
     return os.path.join(TODO_DIR, files[0])
 
 def load_todos(filepath):
+    """Load todos.
+
+    Args: filepath.
+    """
     try:
         with open(filepath, 'r') as f:
             return json.load(f)
@@ -28,6 +33,10 @@ def load_todos(filepath):
         return None
 
 def save_todos(filepath, data):
+    """Save todos.
+
+    Args: filepath, data.
+    """
     try:
         with open(filepath, 'w') as f:
             json.dump(data, f, indent=2)
@@ -35,6 +44,7 @@ def save_todos(filepath, data):
         print(f"Error saving todos: {e}")
 
 def run_autonomous_loop():
+    """Run autonomous loop (function)."""
     todo_file = get_active_todo_file()
     if not todo_file:
         print("No granular list found.")
