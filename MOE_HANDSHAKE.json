@@ -1,0 +1,16 @@
+{
+  "type": "handshake",
+  "from": "moe",
+  "to": "kai",
+  "ts": "2026-06-19T00:54:52",
+  "acl": "(inform\n  :sender moe\n  :receiver kai\n  :content \"handshake: Moe<->Kai channel ready. 46 active projects, 1149 py modules. KV payload at C:\\Users\\chris\\OneDrive\\Desktop\\PROJECTS (Active)\\master_state.json. Reply via kqml_channel/inbox with signed ACL.\"\n  :reply-with moe-handshake\n  :language KQML\n  :ontology viper)",
+  "kqml_hash": "92ddd81e5d03a13dabe45fd51214c5f59b2cfd8077da48a44eda87a364a2ec23",
+  "secret_fingerprint": "570a461a1a7e3fc4",
+  "kv_payload": "C:\\Users\\chris\\OneDrive\\Desktop\\PROJECTS (Active)\\master_state.json",
+  "channel": {
+    "inbox": "C:\\Viper\\kqml_channel\\inbox",
+    "outbox": "C:\\Viper\\kqml_channel\\outbox",
+    "to_kai": "C:\\Viper\\kqml_channel\\to_kai"
+  },
+  "instructions": "Verify secret_fingerprint == sha256(SHARED_SECRET)[:16]. To drive Moe: write {acl, kqml_hash} into inbox/. Load kv_payload (master_state.json) as project context."
+}

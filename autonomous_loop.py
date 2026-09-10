@@ -11,6 +11,7 @@ SERVER_URL = "http://127.0.0.1:9000/api/brew"
 OPTIMIZER_PATH = os.path.join(PROJECT_ROOT, "scripts", "scientific_optimizer.py")
 
 def get_active_todo_file():
+    """Get active todo file (function)."""
     if not os.path.exists(TODO_DIR):
         return None
     files = [f for f in os.listdir(TODO_DIR) if f.endswith('.json')]
@@ -20,6 +21,10 @@ def get_active_todo_file():
     return os.path.join(TODO_DIR, files[0])
 
 def load_todos(filepath):
+    """Load todos.
+
+    Args: filepath.
+    """
     try:
         with open(filepath, 'r') as f:
             return json.load(f)
@@ -28,6 +33,10 @@ def load_todos(filepath):
         return None
 
 def save_todos(filepath, data):
+    """Save todos.
+
+    Args: filepath, data.
+    """
     try:
         with open(filepath, 'w') as f:
             json.dump(data, f, indent=2)
@@ -35,43 +44,44 @@ def save_todos(filepath, data):
         print(f"Error saving todos: {e}")
 
 def run_autonomous_loop():
+    """Run autonomous loop (function)."""
     todo_file = get_active_todo_file()
     if not todo_file:
         print("No granular list found.")
         return
-        
+
     data = load_todos(todo_file)
     if not data or 'todos' not in data:
         print("Invalid todo list format.")
         return
-        
+
     todos = data['todos']
-    
+
     print(f"Found granular list: {todo_file}")
-    
+
     for task in todos:
         if task.get('status') in ['completed', 'done']:
             continue
-            
+
         task_id = task.get('id')
         content = task.get('content')
-        
+
         print(f"\n[+] Executing Task {task_id}: {content}")
-        
+
         # Mark as in progress
         task['status'] = 'in_progress'
         save_todos(todo_file, data)
-        
+
         # Send to KAI_9000 Pedagogy Server
         payload = {
             "prompt": f"Write a bash or python script to accomplish this task: '{content}'. The script must execute automatically. Do not include interactive prompts."
         }
-        
+
         try:
             print("    -> Brewing code via LLM API...")
             response = requests.post(SERVER_URL, json=payload, timeout=120)
             result = response.json()
-            
+
             if result.get("success"):
                 print("    -> Execution successful!")
                 print(f"    -> Response: {result.get('execution_summary', '')[:100]}...")
@@ -79,21 +89,21 @@ def run_autonomous_loop():
             else:
                 print(f"    -> Execution failed: {result.get('error', 'Unknown error')}")
                 task['status'] = 'failed'
-                
+
         except requests.exceptions.RequestException as e:
             print(f"    -> Server connection failed: {e}")
             task['status'] = 'pending' # Revert to pending
             break # Stop loop if server is down
-            
+
         # Save state after each task
         save_todos(todo_file, data)
-        
+
         # Add a sleep gap for thermal throttling / API limits
         time.sleep(5)
-        
+
     print("\n[+] Running Scientific Optimizer & Learning Pruner...")
     subprocess.run(["python3", OPTIMIZER_PATH])
-    
+
     print("\nAutonomous loop finished.")
 
 if __name__ == "__main__":
